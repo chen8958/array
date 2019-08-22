@@ -1,0 +1,6 @@
+All files are distributed under the terms of the Creative Commons Attribution-Noncommercial-ShareAlike 3.0 license (http://creativecommons.org/licenses/by-nc/3.0/).
+
+Public environment data were authored by Ngoc Q. K. Duong and Nobutaka Ito.
+
+Domestic environment data were authored by H. Christensen, Jon Barker, Ning Ma and Phil Green in the framework of the CHiME Project funded by the EPSRC. If you use these data in any published research please cite:
+H. Christensen, J. Barker, N. Ma and P. Green. The CHiME corpus: a resource and a challenge for Computational Hearing in Multisource Environments. In Proc. Interspeech'10, 2010.
