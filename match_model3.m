@@ -30,15 +30,18 @@ for ff=1:length(Freqs)
     k = 2*pi*Freqs(ff)/c;
     for ss = 1:SorNum
         for m = 1:MicNum
+            %G_tmp(m,ss,ff) =exp(1j*k*kappa(ss,:)*MicPos(:,m));
             G_tmp(m,ss,ff) =exp(1j*k*kappa(ss,:)*MicPos(:,m));
         end
     end
 end
 for ss = 1:SorNum
     for m = 1:MicNum
-            G(m,ss,:)=cat(3,G_tmp(m,ss,:),conj(fliplr(G_tmp(m,ss,:))));
+            G(m,ss,:)=cat(2,reshape(G_tmp(m,ss,:),[1,length(G_tmp)]),zeros(1,1),conj(fliplr(reshape(G_tmp(m,ss,2:end),[1,length(G_tmp)-1]))));
     end
 end
+
+
 %%
 %M
 %dic=0:15:345;
@@ -98,19 +101,25 @@ end
 %     H_whole(2,i,:)=cat(3,H(2,i,:),conj(fliplr(H(2,i,:))));
 % end
 
+% for i=1:2
+%     for j=1:MicNum
+%         H_pad(i,j,:)=cat(3,H(1,i,:),zeros(1,1),fliplr(conj(H(1,i,2:end))));
+%     end
+% end
 for i=1:MicNum
     H_filter(1,i,:)=ifft(H(1,i,:));
     H_filter(2,i,:)=ifft(H(2,i,:));
 end
 
 
-for i=1:MicNum
-    H_filter_transpose(1,i,1:length(H_filter)/2)= H_filter(1,i,length(H_filter)/2+1:end);
-    H_filter_transpose(1,i,length(H_filter)/2+1:length(H_filter))= H_filter(1,i,1:length(H_filter)/2);
-    H_filter_transpose(2,i,1:length(H_filter)/2)= H_filter(2,i,length(H_filter)/2+1:end);
-    H_filter_transpose(2,i,length(H_filter)/2+1:length(H_filter))= H_filter(2,i,1:length(H_filter)/2);
+% for i=1:MicNum
+%     H_filter_transpose(1,i,1:length(H_filter)/2)= H_filter(1,i,length(H_filter)/2+1:end);
+%     H_filter_transpose(1,i,length(H_filter)/2+1:length(H_filter))= H_filter(1,i,1:length(H_filter)/2);
+%     H_filter_transpose(2,i,1:length(H_filter)/2)= H_filter(2,i,length(H_filter)/2+1:end);
+%     H_filter_transpose(2,i,length(H_filter)/2+1:length(H_filter))= H_filter(2,i,1:length(H_filter)/2);
+% 
+% end
 
-end
 % for i=1:MicNum
 %     for j=1:SorNum
 %     G_filter(i,j,:)=ifft(G(i,j,:));
