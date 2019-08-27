@@ -44,6 +44,8 @@ Rxx=Rxx+Rxx_tmp;
 end
 
 P=zeros(MicNum,MicNum,length(Freqs));
+Ps=zeros(MicNum,MicNum,length(Freqs));
+
 for ff=1:1:length(Freqs);
 
 
@@ -60,13 +62,13 @@ display(D_sort);
 
 %noise
 %min norm music need more subspace
-for SignalSub=1:4
+for SignalSub=1:12
 v=V_sort(:,SignalSub)*l*V_sort(:,SignalSub)/(norm(l*V_sort(:,SignalSub))^2);
-P(:,:,ff)=P(:,:,ff)+v*v';
+Ps(:,:,ff)=Ps(:,:,ff)+v*v';
 
 %P(:,:,ff)=P(:,:,ff)+V_sort(:,SignalSub)*V_sort(:,SignalSub)';
 end
-
+P(:,:,ff)=eye(MicNum)-Ps(:,:,ff);
 
 
 end
@@ -138,7 +140,7 @@ end
 %             end
                 
             k = 2*pi*Freqs(ff)/c; 
-            kappa=[cosd(azi)*sind(ele),sind(azi)*sind(ele),sind(ele)];
+            kappa=[cosd(azi)*sind(ele),sind(azi)*sind(ele),cosd(ele)];
             a=zeros(MicNum,1);
             for MicNo=1:MicNum
                 a(MicNo)=exp(1i*k*kappa*MicPos(:,MicNo));

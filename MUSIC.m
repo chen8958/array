@@ -42,7 +42,7 @@ for ff=1:1:length(Freqs)
 end
 Rxx=Rxx+Rxx_tmp;
 end
-
+Ps=zeros(MicNum,MicNum,length(Freqs));
 P=zeros(MicNum,MicNum,length(Freqs));
 for ff=1:1:length(Freqs);
 
@@ -59,13 +59,15 @@ V_sort = V(:,index);
 % end
 
 %noise
-for SignalSub=1:4
+%«á­±¬Onoise subspace
+for SignalSub=1:9
 %v=V_sort(:,SignalSub)*l*V_sort(:,SignalSub)/(norm(l*V_sort(:,SignalSub))^2);
 %P(:,:,ff)=P(:,:,ff)+v*v';
 
-P(:,:,ff)=P(:,:,ff)+V_sort(:,SignalSub)*V_sort(:,SignalSub)';
+%P(:,:,ff)=P(:,:,ff)+(eye(MicNum)-V_sort(:,SignalSub)*V_sort(:,SignalSub)');
+Ps(:,:,ff)=Ps(:,:,ff)+(V_sort(:,SignalSub)*V_sort(:,SignalSub)');
 end
-
+P(:,:,ff)=eye(MicNum)-Ps(:,:,ff);
 
 
 end
@@ -139,13 +141,13 @@ end
 %             end
                 
             k = 2*pi*Freqs(ff)/c; 
-            kappa=[cosd(azi)*sind(ele),sind(azi)*sind(ele),sind(ele)];
+            kappa=[cosd(azi)*sind(ele),sind(azi)*sind(ele),cosd(ele)];
             a=zeros(MicNum,1);
             for MicNo=1:MicNum
                 a(MicNo)=exp(1i*k*kappa*MicPos(:,MicNo));
             end
              
-             w=1/(a'*inv(P(:,:,ff)+0.001*eye(MicNum))*a);
+             w=1/(a'*P(:,:,ff)*a);
 %             w=1/(a'*inv(0.1*eye(6)-P(:,:,ff))*a);
 %             w=(inv(Rxx(:,:,ff)+0.01*eye(6))*a.')/(conj(a)*inv(Rxx(:,:,ff)+0.01*eye(6))*a.');
             
