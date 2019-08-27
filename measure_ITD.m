@@ -1,6 +1,6 @@
 clc;
 clear all;
-dic=30:60:330;
+dic=0:15:345;
 for i=1:length(dic)
 [y(i,:,:),fs]=audioread(['model_matching' num2str(dic(i)) '.wav']);
 end
@@ -23,4 +23,14 @@ l_sound=fft(y(i,:,1));
 r_sound=fft(y(i,:,2));
 ild(i,:)=[dic(i),sum(abs(l_sound.*l_sound))/sum(abs(r_sound.*r_sound))];
 end
-plot(dic,mag2db(ild(:,2)))
+figure(1);
+plot(dic,mag2db(ild(:,2)));
+xlabel("angle");
+ylabel("dB");
+title("model matching ILD");
+
+figure(2);
+plot(dic,(itd(:,2)/44.1))
+xlabel("angle");
+ylabel("ms");
+title("model matching ITD");

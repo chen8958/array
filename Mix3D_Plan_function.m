@@ -79,5 +79,6 @@ end
 for MicNo=1:M
     audiowrite(['p' num2str(MicNo) '.wav'],p(MicNo,:)/max(abs(p(MicNo,:))),fs);
 end
+display("mix3D done");
 end
 

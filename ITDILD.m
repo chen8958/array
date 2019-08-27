@@ -3,7 +3,7 @@ clear all;
 [sound,fs]=audioread(['female_16k_10s.wav']);
 y = resample(sound,44100,fs);
 
-dic=0:15:345;
+dic=0:45:315;
 cd('elev0');
 itd=zeros(length(dic),2);
 ild=zeros(length(dic),2);

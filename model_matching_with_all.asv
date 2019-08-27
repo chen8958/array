@@ -1,0 +1,7 @@
+angel=0:45:315;
+MicPos=(1/100)*4.5*[cosd(angel);sind(angel);zeros(1,length(angel))]
+for i=1:length(angel)
+    
+    [P_half SorPos SorLen p]=Mix3D_Plan_function(MicPos,SorPos);
+    
+end
