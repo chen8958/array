@@ -1,8 +1,8 @@
 clc;
 clear all;
-dirname="model_matching_8mic_72sor";
+dirname="model_matching_8mic_24sor";
 cd(dirname);
-dic=0:5:355;
+dic=0:15:345;
 for i=1:length(dic)
 [y(i,:,:),fs]=audioread(['model_matching' num2str(dic(i)) '.wav']);
 end

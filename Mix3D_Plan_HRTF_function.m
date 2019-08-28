@@ -9,11 +9,14 @@ path=cd;
 cd([path '\audio_R'])
 [x1 fs]=audioread('female_16k_10s.wav');
 [x2 fs]=audioread('male_16k_10s.wav');
+[x3 fs]=audioread('ring.wav');
+
+fs=16000;
 % [x3 fs]=audioread('4_speech_5s.wav');
 cd(path)
 SorLen=fs*4;
 %Source=[x1(1:fs*4)];
-Source=[x1(1:fs*4),x2(1:fs*4)];
+Source=[x1(1:fs*4),x2(1:fs*4),x3(1:fs*4)];
 % Source=[x1(1:fs*1),x2(1:fs*1),x3(1:fs*1)];
 
 %% Add noise to each microphone
