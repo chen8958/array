@@ -8,7 +8,7 @@
 % angel=0:60:300;
 % MicPos=(1/100)*4.5*[cosd(angel);sind(angel)];
 % SorPos=angel;
-function model_matching(angle,MicPos,wav_direction)
+function model_matching(angle,MicPos,wav_direction,dirname)
 % angel=0:45:315;
 % MicPos=(1/100)*4.5*[cosd(angel);sind(angel)]
 SorPos=angle;
@@ -50,7 +50,7 @@ end
 dic=angle;
 cd('elev0');
 for i=1:length(dic)
-    if dic(i)==0   
+    if dic(i)<10   
         filenameL=sprintf('L0e000a.wav');
         [leftfilter,fsL]=audioread([filenameL]);
         tmp=fft(leftfilter);
@@ -92,7 +92,7 @@ for i=1:length(G)
     %H(:,:,i)=M(:,:,i)*pinv(G(:,:,i));
     
     %H(:,:,i)=(inv(G(:,:,i)*G(:,:,i)')*G(:,:,i)*M(:,:,i)')';
-    H(:,:,i)=(inv(G(:,:,i)*G(:,:,i)'+0.01*eye(size(G(:,:,i),2)))*G(:,:,i)*M(:,:,i)')';
+    H(:,:,i)=(inv(G(:,:,i)*G(:,:,i)'+0.001*eye(size(G(:,:,i),1)))*G(:,:,i)*M(:,:,i)')';
     
     ER(:,:,i)=M(:,:,i)-H(:,:,i)*G(:,:,i);
 end
@@ -143,8 +143,9 @@ for i=1:MicNum
 y(1,:)=y(1,:)+conv(p_source(i,:),reshape(real(H_filter(1,i,:)),[1 length(H_filter)]));
 y(2,:)=y(2,:)+conv(p_source(i,:),reshape(real(H_filter(2,i,:)),[1 length(H_filter)]));
 end
-
+cd(dirname);
 audiowrite(['model_matching' num2str(wav_direction) '.wav'],y.'/(max(abs(y),[],'all')),44100);
+cd('..');
 %audiowrite(['model_matching.wav'],abs(y.')/max(abs(y.')),fs);
 
 %audiowrite(['model_matching.wav'],abs(y.'),fs);

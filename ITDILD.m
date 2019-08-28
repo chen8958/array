@@ -3,7 +3,7 @@ clear all;
 [sound,fs]=audioread(['female_16k_10s.wav']);
 y = resample(sound,44100,fs);
 
-dic=0:45:315;
+dic=0:15:345;
 cd('elev0');
 itd=zeros(length(dic),2);
 ild=zeros(length(dic),2);
@@ -22,10 +22,10 @@ for i=1:length(dic)
         
 %         l_total=0;
 %         r_total=0;
-%         l_sound=fft(conv(y,leftfilter));
-%         r_sound=fft(conv(y,rightfilter));
-        l_sound=fft(leftfilter);
-        r_sound=fft(rightfilter);
+        l_sound=fft(conv(y,leftfilter));
+        r_sound=fft(conv(y,rightfilter));
+%         l_sound=fft(leftfilter);
+%         r_sound=fft(rightfilter);
         ild(i,:)=[dic(i),sum(abs(l_sound.*l_sound))/sum(abs(r_sound.*r_sound))];
 %         for j=1:length(l_sound)
 %             l_total=
@@ -50,11 +50,11 @@ for i=1:length(dic)
         tmp=fft(rightfilter);
         M(2,i,:)=tmp;
         
-%         l_sound=fft(conv(y,leftfilter));
-%         r_sound=fft(conv(y,rightfilter));
+        l_sound=fft(conv(y,leftfilter));
+        r_sound=fft(conv(y,rightfilter));
         
-        l_sound=fft(leftfilter);
-        r_sound=fft(rightfilter);
+%         l_sound=fft(leftfilter);
+%         r_sound=fft(rightfilter);
         ild(i,:)=[dic(i),sum(abs(l_sound.*l_sound))/sum(abs(r_sound.*r_sound))];
         
 %         [c,lags] = xcorr(conv(y,leftfilter),conv(y,rightfilter));
@@ -75,11 +75,11 @@ for i=1:length(dic)
         M(2,i,:)=tmp;
         
         
-%         l_sound=fft(conv(y,leftfilter));
-%         r_sound=fft(conv(y,rightfilter));
+        l_sound=fft(conv(y,leftfilter));
+        r_sound=fft(conv(y,rightfilter));
         
-        l_sound=fft(leftfilter);
-        r_sound=fft(rightfilter);
+%         l_sound=fft(leftfilter);
+%         r_sound=fft(rightfilter);
         ild(i,:)=[dic(i),sum(abs(l_sound.*l_sound))/sum(abs(r_sound.*r_sound))];
         
 %         [c,lags] = xcorr(conv(y,leftfilter),conv(y,rightfilter));

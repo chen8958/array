@@ -78,6 +78,7 @@ end
 
 %% Write wave file
     %audiowrite(['p' num2str(1) '.wav'],p(1,:),fs);
+
 for MicNo=1:M
     audiowrite(['p' num2str(MicNo) '.wav'],p(MicNo,:)/max(abs(p(MicNo,:))),fs);
 end

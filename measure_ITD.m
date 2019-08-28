@@ -1,6 +1,8 @@
 clc;
 clear all;
-dic=0:15:345;
+dirname="model_matching_8mic_72sor";
+cd(dirname);
+dic=0:5:355;
 for i=1:length(dic)
 [y(i,:,:),fs]=audioread(['model_matching' num2str(dic(i)) '.wav']);
 end
@@ -27,10 +29,11 @@ figure(1);
 plot(dic,mag2db(ild(:,2)));
 xlabel("angle");
 ylabel("dB");
-title("model matching ILD");
+title(["model matching 8mic 24sor ILD"]);
 
 figure(2);
 plot(dic,(itd(:,2)/44.1))
 xlabel("angle");
 ylabel("ms");
-title("model matching ITD");
+title(["model matching 8mic 24sor ITD"]);
+cd('..');
