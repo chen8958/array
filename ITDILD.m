@@ -32,12 +32,12 @@ for i=1:length(dic)
 %             r_total=
 %         end
         
-%         [c,lags] = xcorr(conv(y,leftfilter),conv(y,rightfilter));
-% %         [c,lags] = xcorr(leftfilter,rightfilter);
-%         stem(lags,c);
-%         title(['now=' num2str(i)]);
-%         [val,idx]=max(c);
-%         itd(i,:)=[dic(i),lags(idx)/fs];
+        [c,lags] = xcorr(conv(y,leftfilter),conv(y,rightfilter));
+%         [c,lags] = xcorr(leftfilter,rightfilter);
+        stem(lags,c);
+        title(['now=' num2str(i)]);
+        [val,idx]=max(c);
+        itd(i,:)=[dic(i),lags(idx)/fs];
         
     elseif dic(i)<100
         filenameL=sprintf('L0e0%da.wav',dic(i));
@@ -57,12 +57,12 @@ for i=1:length(dic)
 %         r_sound=fft(rightfilter);
         ild(i,:)=[dic(i),sum(abs(l_sound.*l_sound))/sum(abs(r_sound.*r_sound))];
         
-%         [c,lags] = xcorr(conv(y,leftfilter),conv(y,rightfilter));
-% %         [c,lags] = xcorr(leftfilter,rightfilter);
-%         stem(lags,c)
-%         title(['now=' num2str(i)]);
-%         [val,idx]=max(c);
-%         itd(i,:)=[dic(i),lags(idx)/fs];
+        [c,lags] = xcorr(conv(y,leftfilter),conv(y,rightfilter));
+%         [c,lags] = xcorr(leftfilter,rightfilter);
+        stem(lags,c)
+        title(['now=' num2str(i)]);
+        [val,idx]=max(c);
+        itd(i,:)=[dic(i),lags(idx)/fs];
     else
         filenameL=sprintf('L0e%da.wav',dic(i));
         [leftfilter,fsL]=audioread([filenameL]);
@@ -82,12 +82,12 @@ for i=1:length(dic)
 %         r_sound=fft(rightfilter);
         ild(i,:)=[dic(i),sum(abs(l_sound.*l_sound))/sum(abs(r_sound.*r_sound))];
         
-%         [c,lags] = xcorr(conv(y,leftfilter),conv(y,rightfilter));
-% %         [c,lags] = xcorr(leftfilter,rightfilter);
-%         stem(lags,c)
-%         title(['now=' num2str(i)]);
-%         [val,idx]=max(c);
-%         itd(i,:)=[dic(i),lags(idx)/fs];
+        [c,lags] = xcorr(conv(y,leftfilter),conv(y,rightfilter));
+%         [c,lags] = xcorr(leftfilter,rightfilter);
+        stem(lags,c)
+        title(['now=' num2str(i)]);
+        [val,idx]=max(c);
+        itd(i,:)=[dic(i),lags(idx)/fs];
     end
 end
 cd('..');
