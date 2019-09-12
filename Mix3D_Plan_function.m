@@ -57,7 +57,7 @@ for FrameNo=1:NumOfFrame
     for ff=1:length(Freqs)
         k = 2*pi*Freqs(ff)/c;                                              
         for ss = 1:SorNum
-            kappa = [cosd(SorPos(ss,1))*sind(SorPos(ss,2)) sind(SorPos(ss,1))*sind(SorPos(ss,2)) cosd(SorPos(ss,2))];
+            kappa = [cosd(SorPos(ss,1))*cosd(SorPos(ss,2)) sind(SorPos(ss,1))*cosd(SorPos(ss,2)) sind(SorPos(ss,2))];
             A(:,ss)=exp(1i*k*kappa*MicPos).';
         end
         for MicNo=1:M
