@@ -71,8 +71,18 @@ r_sound=fft(y(i,:,2));
 ild(elevation/10+1,i)=sum(abs(l_sound.*l_sound))/sum(abs(r_sound.*r_sound));
 end
 cd('..');
-
-
+figure(1);
+contourf(0:30:330,0:10:80,mag2db(ild));
+xlabel("azimuth");
+ylabel("elevation");
+title("ILD beta=0.001");
+colorbar;
+figure(2);
+contourf(0:30:330,0:10:80,itd);
+xlabel("azimuth");
+ylabel("elevation");
+title("ITD beta=0.001");
+colorbar;
 
 
 
