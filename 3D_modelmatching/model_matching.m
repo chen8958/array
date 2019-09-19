@@ -8,7 +8,7 @@
 % angel=0:60:300;
 % MicPos=(1/100)*4.5*[cosd(angel);sind(angel)];
 % SorPos=angel;
-function model_matching(angle,MicPos,wav_direction,dirname,elevation)
+function [H_filter]=model_matching(angle,MicPos,elevation)
 % angel=0:45:315;
 % MicPos=(1/100)*4.5*[cosd(angel);sind(angel)]
 SorPos=angle;
@@ -51,12 +51,12 @@ dic=angle;
 cd(['elev' num2str(elevation)]);
 for i=1:length(dic)
     if dic(i)<10   
-        filenameL=sprintf("L%de000a.wav",elevation);
+        filenameL=sprintf("L%de00%da.wav",elevation,dic(i));
         [leftfilter,fsL]=audioread([filenameL]);
         tmp=fft(leftfilter);
         M(1,i,:)=tmp;
         
-        filenameR=sprintf('R%de000a.wav',elevation);
+        filenameR=sprintf('R%de00%da.wav',elevation,dic(i));
         [rightfilter,fsR]=audioread([filenameR]);
         tmp=fft(rightfilter);
         M(2,i,:)=tmp;
@@ -90,7 +90,6 @@ cd('..');
 %processing
 for i=1:length(G)
     %H(:,:,i)=M(:,:,i)*pinv(G(:,:,i));
-    
     %H(:,:,i)=(inv(G(:,:,i)*G(:,:,i)')*G(:,:,i)*M(:,:,i)')';
     H(:,:,i)=(inv(G(:,:,i)*G(:,:,i)'+0.001*eye(size(G(:,:,i),1)))*G(:,:,i)*M(:,:,i)')';
     
@@ -113,40 +112,5 @@ for i=1:MicNum
 end
 
 
-% for i=1:MicNum
-%     H_filter_transpose(1,i,1:length(H_filter)/2)= H_filter(1,i,length(H_filter)/2+1:end);
-%     H_filter_transpose(1,i,length(H_filter)/2+1:length(H_filter))= H_filter(1,i,1:length(H_filter)/2);
-%     H_filter_transpose(2,i,1:length(H_filter)/2)= H_filter(2,i,length(H_filter)/2+1:end);
-%     H_filter_transpose(2,i,length(H_filter)/2+1:length(H_filter))= H_filter(2,i,1:length(H_filter)/2);
-% 
-% end
 
-% for i=1:MicNum
-%     for j=1:SorNum
-%     G_filter(i,j,:)=ifft(G(i,j,:));
-%     G_filter(i,j,:)=ifft(G(i,j,:));
-%     end
-% end
-
-for i=1:MicNum
-    [p(i,:) fs]=audioread("p"+i+".wav");
-    p_source(i,:)=resample(p(i,:),44100,fs);
-end
-y=zeros(2,length(conv(p_source(1,:),reshape(H_filter(1,1,:),[1 length(H_filter)]))));
-
-% for i=1:MicNum
-% y(1,:)=y(1,:)+conv(p_source(i,:),reshape(H_filter(1,i,:),[1 1024]));
-% y(2,:)=y(2,:)+conv(p_source(i,:),reshape(H_filter(2,i,:),[1 1024]));
-% end
-
-for i=1:MicNum
-y(1,:)=y(1,:)+conv(p_source(i,:),reshape(real(H_filter(1,i,:)),[1 length(H_filter)]));
-y(2,:)=y(2,:)+conv(p_source(i,:),reshape(real(H_filter(2,i,:)),[1 length(H_filter)]));
-end
-cd(dirname);
-audiowrite(['model_matching_sor' num2str(wav_direction) 'ele' num2str(elevation) '.wav'],y.'/(max(abs(y),[],'all')),44100);
-cd('..');
-%audiowrite(['model_matching.wav'],abs(y.')/max(abs(y.')),fs);
-
-%audiowrite(['model_matching.wav'],abs(y.'),fs);
 end
