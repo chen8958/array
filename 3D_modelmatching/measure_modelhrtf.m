@@ -60,8 +60,8 @@ dic=[0,32,64,88,120,152,176,208,240,272,304,328];
 dirname=sprintf("model_matching_72mic_%dele",elevation);
 cd(dirname);
 for i=1:length(dic)
-    [y(i,:,1),fs]=audioread(['L' num2str(elevation(i)) 'ele' num2str(dic(i)) 'a.wav']);
-    [y(i,:,2),fs]=audioread(['R' num2str(elevation(i)) 'ele' num2str(dic(i)) 'a.wav']);
+    [y(i,:,1),fs]=audioread(['L' num2str(elevation) 'ele' num2str(dic(i)) 'a.wav']);
+    [y(i,:,2),fs]=audioread(['R' num2str(elevation) 'ele' num2str(dic(i)) 'a.wav']);
 end
 for i=1:length(dic)
 % [c,lags] = xcorr(conv(y,leftfilter),conv(y,rightfilter));

@@ -13,7 +13,7 @@ angle = 0:30:330;
 dirname=sprintf("model_matching_%dmic_%dele",length(MicPos),elevation(j));
 system_call=sprintf("mkdir %s",dirname);
 system(system_call);
-H_filter=model_matching(angle,MicPos,elevation(j));
+H_filter=model_matching(angle,MicPos,elevation(j),dirname);
 for i=1:length(angle)
     [P_half SorPos SorLen p]=Mix3D_Plan_HRTF_function(MicPos,[angle(i),90]);
     display(angle(i));
@@ -26,7 +26,7 @@ angle=[0,32,58,90,122,148,180,212,238,270,302,328];
 dirname=sprintf("model_matching_%dmic_%dele",length(MicPos),elevation);
 system_call=sprintf("mkdir %s",dirname);
 system(system_call);
-H_filter=model_matching(angle,MicPos,elevation);
+H_filter=model_matching(angle,MicPos,elevation,dirname);
 for i=1:length(angle)
     %[P_half SorPos SorLen p]=Mix3D_Plan_HRTF_function(MicPos,[angle(i),90;angle(i)+120,90;angle(i)+240,90]);
     [P_half SorPos SorLen p]=Mix3D_Plan_HRTF_function(MicPos,[angle(i),90]);
@@ -39,7 +39,7 @@ angle=[0,32,64,88,120,152,176,208,240,272,304,328];
 dirname=sprintf("model_matching_%dmic_%dele",length(MicPos),elevation);
 system_call=sprintf("mkdir %s",dirname);
 system(system_call);
-H_filter=model_matching(angle,MicPos,elevation);
+H_filter=model_matching(angle,MicPos,elevation,dirname);
 for i=1:length(angle)
     %[P_half SorPos SorLen p]=Mix3D_Plan_HRTF_function(MicPos,[angle(i),90;angle(i)+120,90;angle(i)+240,90]);
     [P_half SorPos SorLen p]=Mix3D_Plan_HRTF_function(MicPos,[angle(i),90]);

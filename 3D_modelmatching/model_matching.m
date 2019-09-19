@@ -8,7 +8,7 @@
 % angel=0:60:300;
 % MicPos=(1/100)*4.5*[cosd(angel);sind(angel)];
 % SorPos=angel;
-function [H_filter]=model_matching(angle,MicPos,elevation)
+function [H_filter]=model_matching(angle,MicPos,elevation,dirname)
 % angel=0:45:315;
 % MicPos=(1/100)*4.5*[cosd(angel);sind(angel)]
 SorPos=angle;
@@ -93,7 +93,7 @@ for i=1:length(G)
     %H(:,:,i)=(inv(G(:,:,i)*G(:,:,i)')*G(:,:,i)*M(:,:,i)')';
     H(:,:,i)=(inv(G(:,:,i)*G(:,:,i)'+0.001*eye(size(G(:,:,i),1)))*G(:,:,i)*M(:,:,i)')';
     
-    ER(:,:,i)=M(:,:,i)-H(:,:,i)*G(:,:,i);
+    ER(:,:,i)=H(:,:,i)*G(:,:,i);
 end
 % 
 % for i=1:MicNum
@@ -110,7 +110,14 @@ for i=1:MicNum
     H_filter(1,i,:)=ifft(H(1,i,:));
     H_filter(2,i,:)=ifft(H(2,i,:));
 end
-
+cd(dirname);
+for i=1:SorNum
+filename=sprintf('L%dele%da.wav',elevation,dic(i));
+audiowrite(filename,ifft(reshape(ER(1,i,:),[length(ER(1,i,:)), 1]) ),44100 );
+filename=sprintf('R%dele%da.wav',elevation,dic(i));
+audiowrite(filename,ifft(reshape(ER(2,i,:),[length(ER(1,i,:)), 1]) ),44100 );
+end
+cd("..");
 
 
 end
