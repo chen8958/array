@@ -1,8 +1,8 @@
 %8sor with 2.8radius
 % angle_mic=0:45:315;
 % MicPos=(1/100)*2.8*[sind(angle_mic);cosd(angle_mic);zeros(1,length(angle_mic))];
-angle_mic=0:5:355;
-MicPos=(1/100)*25.5*[sind(angle_mic);cosd(angle_mic);zeros(1,length(angle_mic))];
+angle_mic=0:15:345;
+MicPos=(1/100)*9.95*[sind(angle_mic);cosd(angle_mic);zeros(1,length(angle_mic))];
 [D MicNum]=size(MicPos);
 %
 folder_location=pwd;
