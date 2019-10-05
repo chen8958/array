@@ -1,8 +1,3 @@
-Header Size:	 79	 	 
-Pulse Version:	 80	 	 
-Running Pulse Version:	PULSE LabShop v. 14.1.1.41 - 2010-02-12	 	 
-Decimal Symbol:	.	 	 
-Date Format:	yyyy/M/d	 	 
 1	 0.0000000000e+000	 2.13146e-002	-0.00000e+000
 2	 3.1250000000e+000	 1.39383e-003	 1.78224e-003
 3	 6.2500000000e+000	 7.18558e-004	 4.02861e-003
@@ -6404,10 +6399,3 @@ Date Format:	yyyy/M/d
 6399	 1.9993750000e+004	-1.90434e-003	 3.18785e-003
 6400	 1.9996875000e+004	-1.23090e-004	 3.86575e-003
 6401	 2.0000000000e+004	 1.95450e-003	 3.43672e-003
-TagsBegin:	 	 	 
-OverLoad:	 	False	 
-AverageNumber: []	 	 1.39000e+002	 
-OverLoadRatio: []	 	 1.19209e-007	 
-TagsEnd:	 	 	 
-TagScalesBegin:	 	 	 
-TagScalesEnd:	 	 	 

@@ -6399,10 +6399,3 @@
 6399	 1.9993750000e+004	-2.02888e-003	 2.56956e-003
 6400	 1.9996875000e+004	-4.02212e-004	 3.29710e-003
 6401	 2.0000000000e+004	 1.36479e-003	 3.17557e-003
-TagsBegin:	 	 	 
-OverLoad:	 	False	 
-AverageNumber: []	 	 2.00000e+002	 
-OverLoadRatio: []	 	 1.19209e-007	 
-TagsEnd:	 	 	 
-TagScalesBegin:	 	 	 
-TagScalesEnd:	 	 	 

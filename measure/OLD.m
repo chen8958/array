@@ -1,8 +1,15 @@
 %% Low Frequency Compensation
 clc;clear all;close all;
 %% Data analysis
-for i=1:14
-    d=load ([num2str(i) '.txt']);
+azi=0:15:345;
+mic=0:15:345;
+for i=1:length(azi)
+    for j=1:length(mic)
+    tmp=mic(j)-azi(i);
+    if tmp<0
+        tmp=tmp+360;
+    end
+    d=load (['freq_azi0mic' num2str(tmp) '.txt']);
     G_re=d(:,3);                                % real part
     G_ima=d(:,4);                               % imaginary part
     G=G_re+G_ima*1i;                            % frequency response
@@ -16,11 +23,12 @@ for i=1:14
 %     G_ima=G_ima.*[ComGain1];
     
     % -- Frequency weighting --
-    ComGain1=(ones(100,1)).*0.001;
-    ComGain2=(ones(400,1));
-    ComGain3=(ones(2701,1)).*0.001;
-    G_re=G_re.*[ComGain1;ComGain2;ComGain3];
-    G_ima=G_ima.*[ComGain1;ComGain2;ComGain3];
+    
+%     ComGain1=(ones(100,1)).*0.001;
+%     ComGain2=(ones(400,1));
+%     ComGain3=(ones(2701,1)).*0.001;
+%     G_re=G_re.*[ComGain1;ComGain2;ComGain3];
+%     G_ima=G_ima.*[ComGain1;ComGain2;ComGain3];
     
     G=G_re+G_ima*1i;
     GGain=abs(G);
@@ -28,7 +36,8 @@ for i=1:14
 %     loglog(GGain)
     
     multi = 2.56;  % 倍數
-    fn = 25600;    % 頻寬 (Hz)
+%     fn = 25600;    % 頻寬 (Hz)
+    fn=20000;
     fs_ori = fn*multi;   % 取樣頻率
     df = d(2,2)-d(1,2);   % 頻率間隔
     
@@ -45,7 +54,8 @@ for i=1:14
 %     xlim([0 length(m)]);
 %     xlabel('Time (samples)');ylabel('Magnitude');title('Impulse response')
 
-cd('F:\2NB\impulse')
-    save([ 'FW_' num2str(i) '.mat'],'m')
-cd('F:\2NB\FR_measured')
+cd('.\impulse')
+    save(['freq_azi' num2str(azi(i)) 'mic' num2str(mic(j)) '.mat'],'m')
+cd('..')
+    end
 end

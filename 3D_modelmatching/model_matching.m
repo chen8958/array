@@ -17,9 +17,11 @@ SorPos=angle;
 [D SorNum]=size(SorPos);
 fs=44100;
 c=343.0;
-NWIN=512;
+NWIN=2048;
 hopsize=NWIN/2;                                                            % 50% overlap
-    %% FFT
+delay=0; 
+%delay=1293;
+%% FFT
 NFFT=2^nextpow2(NWIN);
 df=fs/NFFT;
 Freqs=0:df:(NFFT/2-1)*df;
@@ -41,8 +43,17 @@ for ss = 1:SorNum
             G(m,ss,:)=cat(2,reshape(G_tmp(m,ss,:),[1,length(G_tmp)]),zeros(1,1),conj(fliplr(reshape(G_tmp(m,ss,2:end),[1,length(G_tmp)-1]))));
     end
 end
+for ss = 1:SorNum
+    for m = 1:MicNum
+            G_impulse(m,ss,:)=circshift((ifft(reshape(G(m,ss,:),[1,NFFT]))),delay);
+    end
+end
+for ss = 1:SorNum
+    for m = 1:MicNum
+            G(m,ss,:)=fft(G_impulse(m,ss,:));
 
-
+    end
+end
 %%
 %M
 %dic=0:15:345;
@@ -53,33 +64,39 @@ for i=1:length(dic)
     if dic(i)<10   
         filenameL=sprintf("L%de00%da.wav",elevation,dic(i));
         [leftfilter,fsL]=audioread([filenameL]);
-        tmp=fft(leftfilter);
+        leftfilter=[zeros(delay,1);leftfilter];
+        tmp=fft(leftfilter,NFFT);
         M(1,i,:)=tmp;
         
         filenameR=sprintf('R%de00%da.wav',elevation,dic(i));
         [rightfilter,fsR]=audioread([filenameR]);
-        tmp=fft(rightfilter);
+        rightfilter=[zeros(delay,1);rightfilter];
+        tmp=fft(rightfilter,NFFT);
         M(2,i,:)=tmp;
 
     elseif dic(i)<100
         filenameL=sprintf('L%de0%da.wav',elevation,dic(i));
         [leftfilter,fsL]=audioread([filenameL]);
-        tmp=fft(leftfilter);
+        leftfilter=[zeros(delay,1);leftfilter];
+        tmp=fft(leftfilter,NFFT);
         M(1,i,:)=tmp;
         
         filenameR=sprintf('R%de0%da.wav',elevation,dic(i));
         [rightfilter,fsR]=audioread([filenameR]);
-        tmp=fft(rightfilter);
+        rightfilter=[zeros(delay,1);rightfilter];
+        tmp=fft(rightfilter,NFFT);
         M(2,i,:)=tmp;
     else
         filenameL=sprintf('L%de%da.wav',elevation,dic(i));
         [leftfilter,fsL]=audioread([filenameL]);
-        tmp=fft(leftfilter);
+        leftfilter=[zeros(delay,1);leftfilter];
+        tmp=fft(leftfilter,NFFT);
         M(1,i,:)=tmp;
         
         filenameR=sprintf('R%de%da.wav',elevation,dic(i));
         [rightfilter,fsR]=audioread([filenameR]);
-        tmp=fft(rightfilter);
+        rightfilter=[zeros(delay,1);rightfilter];
+        tmp=fft(rightfilter,NFFT);
         M(2,i,:)=tmp;
     end
     %display(['filename = ' filenameL]);

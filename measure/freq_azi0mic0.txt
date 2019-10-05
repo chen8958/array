@@ -1,41 +1,3 @@
-Header Size:	 79	 	 
-Pulse Version:	 80	 	 
-Running Pulse Version:	PULSE LabShop v. 14.1.1.41 - 2010-02-12	 	 
-Decimal Symbol:	.	 	 
-Date Format:	yyyy/M/d	 	 
-Time Format:	HH:mm:ss:mmm	 	 
-Data Type:	Complex	 	 
-Slice:	False	 	 
-Z-Axis type:	Linear	 	 
-Z-Axis size:	1	 	 
-Z-Axis unit:	 	 	 
-Z-Axis first value:	 0.0000000000e+000	 	 
-Z-Axis delta:	 1.0000000000e+000	 	 
-X-Axis type:	Linear	 	 
-X-Axis size:	6401	 	 
-X-Axis unit:	Hz	 	 
-X-Axis first value:	 0.0000000000e+000	 	 
-X-Axis delta:	 3.1250000000e+000	 	 
-	 	 	 
-AmplitudeUnit:	Pa/Pa	 	 
-Analyzer:	FFT_Spectrum_Averaging	 	 
-AnalyzerName:	FFT Analyzer	 	 
-	 	 	 
-	 	 	 
-Bipolar:	True	 	 
-CenterFrequency:	 1.0000000000e+004	 	 
-	 	 	 
-	 	 	 
-	 	 	 
-	 	 	 
-dBReference:	 1.0000000000e+000	 	 
-	 	 	 
-	 	 	 
-	 	 	 
-Domain:	1	 	 
-Function:	Frequency Response	 	 
-	 	 	 
-InputRange:	 7.0711000000e+000	 	 
 1	 0.0000000000e+000	-8.27086e-003	-0.00000e+000
 2	 3.1250000000e+000	 3.28106e-003	 1.95184e-003
 3	 6.2500000000e+000	-4.35024e-003	 6.40183e-003
@@ -6437,10 +6399,4 @@ InputRange:	 7.0711000000e+000
 6399	 1.9993750000e+004	 4.46633e-003	-5.98272e-003
 6400	 1.9996875000e+004	 7.45347e-004	-7.50902e-003
 6401	 2.0000000000e+004	-3.76488e-003	-6.99086e-003
-TagsBegin:	 	 	 
-OverLoad:	 	False	 
-AverageNumber: []	 	 1.30000e+002	 
-OverLoadRatio: []	 	 1.19209e-007	 
-TagsEnd:	 	 	 
-TagScalesBegin:	 	 	 
-TagScalesEnd:	 	 	 
+	 	 
