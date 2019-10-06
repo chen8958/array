@@ -3,8 +3,10 @@ clc;clear all;close all;
 %% Data analysis
 azi=0:15:345;
 mic=0:15:345;
+
 for i=1:length(azi)
     for j=1:length(mic)
+    cd('.\measure2')
     tmp=mic(j)-azi(i);
     if tmp<0
         tmp=tmp+360;
@@ -53,8 +55,8 @@ for i=1:length(azi)
 %     figure(3);plot(m);
 %     xlim([0 length(m)]);
 %     xlabel('Time (samples)');ylabel('Magnitude');title('Impulse response')
-
-cd('.\impulse')
+cd('..');
+cd('.\impulse2');
     save(['freq_azi' num2str(azi(i)) 'mic' num2str(mic(j)) '.mat'],'m')
 cd('..')
     end
