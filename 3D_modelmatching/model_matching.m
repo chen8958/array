@@ -27,7 +27,7 @@ df=fs/NFFT;
 Freqs=0:df:(NFFT/2-1)*df;
 %kappa = [cosd(SorPos(:,1)).*sind(SorPos(:,2)) sind(SorPos(:,1)).*sind(SorPos(:,2)) cosd(SorPos(:,2))];
 %for azimuth
-kappa = [sind(SorPos(:)) cosd(SorPos(:)) elevation.*ones(length(angle),1)];
+kappa = [sind(SorPos(:)) cosd(SorPos(:)) sind(elevation).*ones(length(angle),1)];
 
 for ff=1:length(Freqs)
     k = 2*pi*Freqs(ff)/c;

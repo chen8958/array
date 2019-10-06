@@ -7,6 +7,13 @@ dic=0:15:345;
 
 dirname=sprintf("experiment_model_matching_24mic_0ele");
 cd(dirname);
+
+% for i=1:length(dic)
+%     
+%         [y(i,:,1),fs]=audioread(['L0ele' num2str(dic(i)) 'a.wav']);
+%         [y(i,:,2),fs]=audioread(['R0ele' num2str(dic(i)) 'a.wav']);
+%     
+% end
 for i=1:length(dic)
 [y(i,:,:),fs]=audioread(['model_matching_sor' num2str(dic(i)) 'ele0.wav']);
 end
