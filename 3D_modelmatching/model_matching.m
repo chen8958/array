@@ -60,6 +60,8 @@ end
 %dic=[90,45,0,315,270,225,180,135]
 dic=angle;
 cd(['elev' num2str(elevation)]);
+delay=1300; 
+
 for i=1:length(dic)
     if dic(i)<10   
         filenameL=sprintf("L%de00%da.wav",elevation,dic(i));

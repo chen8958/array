@@ -1,4 +1,4 @@
-function [H_filter]=model_matching_real_propagation(angle,MicPos,elevation,dirname)
+function [H_filter]=model_matching_real_propagation(angle,MicPos,elevation,dirname,im_angle)
 
 
 % [D MicNum]=size(MicPos);
@@ -47,16 +47,16 @@ cd('..');
 cd('.\measure\impulse');
 MicNum=length(mic_angle);
 SorNum=length(angle);
-for ss = 1:length(angle)
+for ss = 1:length(im_angle)
     for M =1:length(mic_angle)
-        load(['freq_azi' num2str(angle(ss)) 'mic' num2str(mic_angle(M)) '.mat']);
+        load(['freq_azi' num2str(im_angle(ss)) 'mic' num2str(mic_angle(M)) '.mat']);
         G(M,ss,:)=fft(m);
     end
 end
 cd('..');
 cd('..');
 cd('.\3D_modelmatching');
-delay=0;
+delay=1300;
 NFFT=length(G);
 
 %%

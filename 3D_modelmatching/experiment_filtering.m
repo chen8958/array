@@ -1,6 +1,6 @@
 function experiment_filtering(angle_mic,H_filter,wav_direction,elevation,dirname)
 cd("..")
-cd(".\measure\impulse");
+cd(".\measure\impulse2");
 
 for i=1:length(angle_mic)
     load(['freq_azi' num2str(angle_mic(i)) 'mic' num2str(wav_direction) '.mat']);

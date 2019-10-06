@@ -1,21 +1,23 @@
 clc;
 clear all;
-itd=zeros(1,24);
-ild=zeros(1,24);
+itd=zeros(9,12);
+ild=zeros(9,12);
 
-dic=0:15:345;
-
-dirname=sprintf("experiment_model_matching_24mic_0ele");
+dic=0:30:330;
+elevation=0:10:80;
+for j=1:length(elevation)
+dirname=sprintf("experiment_model_matching_24mic_%dele",elevation(j));
 cd(dirname);
-
+% 
 % for i=1:length(dic)
 %     
 %         [y(i,:,1),fs]=audioread(['L0ele' num2str(dic(i)) 'a.wav']);
 %         [y(i,:,2),fs]=audioread(['R0ele' num2str(dic(i)) 'a.wav']);
 %     
 % end
+
 for i=1:length(dic)
-[y(i,:,:),fs]=audioread(['model_matching_sor' num2str(dic(i)) 'ele0.wav']);
+[y(i,:,:),fs]=audioread(['model_matching_sor' num2str(dic(i)) 'ele' num2str(elevation(j)) '.wav']);
 end
 
 for i=1:length(dic)
@@ -24,16 +26,30 @@ for i=1:length(dic)
 % stem(lags,c);
 % title(['now=' num2str(i)]);
 [val,idx]=max(c);
-itd(i)=lags(idx);
+itd(elevation(j)/10+1,i)=lags(idx);
 end
 
 for i=1:length(dic)
 l_sound=fft(y(i,:,1));
 r_sound=fft(y(i,:,2));
-ild(i)=sum(abs(l_sound.*l_sound))/sum(abs(r_sound.*r_sound));
+ild(elevation(j)/10+1,i)=sum(abs(l_sound.*l_sound))/sum(abs(r_sound.*r_sound));
 end
+
 cd('..');
 
+end
+figure(1);
+contourf(0:30:330,0:10:80,mag2db(ild));
+xlabel("azimuth");
+ylabel("elevation");
+title("experiment ILD beta=0.001");
+colorbar;
+figure(2);
+contourf(0:30:330,0:10:80,itd);
+xlabel("azimuth");
+ylabel("elevation");
+title("experiment ITD beta=0.001");
+colorbar;
 
 % 
 % figure(1);
