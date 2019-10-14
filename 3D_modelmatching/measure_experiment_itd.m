@@ -8,11 +8,11 @@ elevation=0:10:80;
 for j=1:length(elevation)
 dirname=sprintf("experiment_model_matching_24mic_%dele",elevation(j));
 cd(dirname);
-% 
+
 % for i=1:length(dic)
 %     
-%         [y(i,:,1),fs]=audioread(['L0ele' num2str(dic(i)) 'a.wav']);
-%         [y(i,:,2),fs]=audioread(['R0ele' num2str(dic(i)) 'a.wav']);
+%         [y(i,:,1),fs]=audioread(['L' num2str(elevation(j)) 'ele' num2str(dic(i)) 'a.wav']);
+%         [y(i,:,2),fs]=audioread(['R' num2str(elevation(j)) 'ele' num2str(dic(i)) 'a.wav']);
 %     
 % end
 

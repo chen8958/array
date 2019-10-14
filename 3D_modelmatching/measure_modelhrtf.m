@@ -6,7 +6,8 @@ ild=zeros(9,12);
 dic=0:30:330;
 elevation = [0,10,20,30,60,70,80];
 for j=1:length(elevation)
-dirname=sprintf("model_matching_24mic_%dele",elevation(j));
+% dirname=sprintf("model_matching_24mic_%dele",elevation(j));
+dirname=sprintf("TUMIF_model_matching_24mic_%dele",elevation(j));
 cd(dirname);
 for i=1:length(dic)
     
@@ -33,7 +34,9 @@ end
 
 elevation = 40;
 dic=[0,32,58,90,122,148,180,212,238,270,302,328];
-dirname=sprintf("model_matching_24mic_%dele",elevation);
+% dirname=sprintf("model_matching_24mic_%dele",elevation);
+dirname=sprintf("TUMIF_model_matching_24mic_%dele",elevation);
+
 cd(dirname);
 for i=1:length(dic)
     [y(i,:,1),fs]=audioread(['L' num2str(elevation) 'ele' num2str(dic(i)) 'a.wav']);
@@ -57,7 +60,8 @@ cd('..');
 
 elevation = 50;
 dic=[0,32,64,88,120,152,176,208,240,272,304,328];
-dirname=sprintf("model_matching_24mic_%dele",elevation);
+% dirname=sprintf("model_matching_24mic_%dele",elevation);
+dirname=sprintf("TUMIF_model_matching_24mic_%dele",elevation);
 cd(dirname);
 for i=1:length(dic)
     [y(i,:,1),fs]=audioread(['L' num2str(elevation) 'ele' num2str(dic(i)) 'a.wav']);

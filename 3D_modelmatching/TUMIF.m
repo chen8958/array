@@ -153,7 +153,7 @@ for i=1:MicNum
     H_filter(2,i,:)=H((i-1)*Lh+1:i*Lh,2);
 end
 cd(dirname);
-for i=1:MicNum
+for i=1:SorNum
     IM_filter(1,i,:)=IM((i-1)*L+1:i*L,1);
     IM_filter(2,i,:)=IM((i-1)*L+1:i*L,2);
 end
@@ -161,9 +161,9 @@ end
 
 for i=1:SorNum
 filename=sprintf('L%dele%da.wav',elevation,dic(i));
-audiowrite(filename,ifft(reshape(IM_filter(1,i,:),[length(IM_filter(1,i,:)), 1]) ),44100 );
+audiowrite(filename,reshape(IM_filter(1,i,:),[length(IM_filter(1,i,:)), 1]),44100 );
 filename=sprintf('R%dele%da.wav',elevation,dic(i));
-audiowrite(filename,ifft(reshape(IM_filter(2,i,:),[length(IM_filter(1,i,:)), 1]) ),44100 );
+audiowrite(filename,reshape(IM_filter(2,i,:),[length(IM_filter(1,i,:)), 1]),44100 );
 end
 cd("..");
 
