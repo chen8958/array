@@ -22,8 +22,8 @@ dirname=sprintf("experiment_model_matching_%dmic_%dele",length(MicPos),elevation
 system_call=sprintf("mkdir %s",dirname);
 system(system_call);
 % H_filter=model_matching(angle,MicPos,elevation(j),dirname);
-H_filter=TUMIF(angle,MicPos,elevation(j),dirname);
-%H_filter=model_matching_real_propagation(angle,MicPos,elevation(j),dirname,angle);
+% H_filter=TUMIF(angle,MicPos,elevation(j),dirname);
+H_filter=model_matching_real_propagation(angle,MicPos,elevation(j),dirname,angle);
 for i=1:length(angle)
     display(angle(i));
     experiment_filtering(angle_mic,H_filter,angle(i),elevation(j),dirname);
@@ -39,8 +39,8 @@ system_call=sprintf("mkdir %s",dirname);
 system(system_call);
 im_angle=0:30:330;
 % H_filter=model_matching(angle,MicPos,elevation,dirname);
-H_filter=TUMIF(angle,MicPos,elevation,dirname);
-%H_filter=model_matching_real_propagation(angle,MicPos,elevation,dirname,im_angle);
+%H_filter=TUMIF(angle,MicPos,elevation,dirname);
+H_filter=model_matching_real_propagation(angle,MicPos,elevation,dirname,im_angle);
 for i=1:length(angle)
     
     display(angle(i));
@@ -55,8 +55,8 @@ dirname=sprintf("experiment_model_matching_%dmic_%dele",length(MicPos),elevation
 system_call=sprintf("mkdir %s",dirname);
 system(system_call);
 % H_filter=model_matching(angle,MicPos,elevation,dirname);
-H_filter=TUMIF(angle,MicPos,elevation,dirname);
-%H_filter=model_matching_real_propagation(angle,MicPos,elevation,dirname,im_angle);
+%H_filter=TUMIF(angle,MicPos,elevation,dirname);
+H_filter=model_matching_real_propagation(angle,MicPos,elevation,dirname,im_angle);
 for i=1:length(angle)
 
     display(angle(i));

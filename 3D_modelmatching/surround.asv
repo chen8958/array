@@ -1,0 +1,20 @@
+function surround(angle,dirname)
+cd('audio_R');
+[vocal,fs]=audioread('female_16k_10s.wav');
+vocal=vocal(1:fs*4);
+cd('..');
+cd(dirname);
+
+for i=1:length(angle)
+filename = sprintf("model_matching_sor%dele0.wav",angle(i));
+[y(:,:,i),fs]=audioread(filename);
+y(:,1)
+end
+y_out=zeros(1,2);
+for i=1:length(angle)
+y_out=[y_out;y(:,:,i)];
+end
+
+audiowrite('surround.wav',y_out,fs);
+cd('..');
+end
